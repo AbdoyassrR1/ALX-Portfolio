@@ -28,7 +28,8 @@ class PostgresqlDB():
         PostgreSQL_PWD = getenv('PostgreSQL_PWD')
         PostgreSQL_HOST = getenv('PostgreSQL_HOST')
         PostgreSQL_DB = getenv('PostgreSQL_DB')
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(PostgreSQL_USER, PostgreSQL_PWD, PostgreSQL_HOST, PostgreSQL_DB), echo=False)
+        # self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(PostgreSQL_USER, PostgreSQL_PWD, PostgreSQL_HOST, PostgreSQL_DB), echo=False)
+        self.__engine = create_engine('postgresql+psycopg2://alx_portfolio_rmjn_user:tnIeks7k1wzauS8XU7ajfsnzybf4A3IV@dpg-cp0gtl21hbls73eagnpg-a.oregon-postgres.render.com/alx_portfolio_rmjn', echo=False)
 
     def reload(self):
             """reloads data from the database"""
