@@ -9,6 +9,7 @@ from models.base_model import Base
 from models.user import User
 from models.task import Task
 import models
+from os import getenv
 
 classes = {
     "User": User,
@@ -23,11 +24,11 @@ class PostgresqlDB():
     
     def __init__(self):
         """Instantiate a DBStorage object"""
-        db_username = "root"
-        db_password = "RootPass!12"
-        db_host = "localhost"
-        db_name = "ALX_Portfolio_DB"
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(db_username, db_password, db_host, db_name), echo=False)
+        PostgreSQL_USER = getenv('PostgreSQL_USER')
+        PostgreSQL_PWD = getenv('PostgreSQL_PWD')
+        PostgreSQL_HOST = getenv('PostgreSQL_HOST')
+        PostgreSQL_DB = getenv('PostgreSQL_DB')
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(PostgreSQL_USER, PostgreSQL_PWD, PostgreSQL_HOST, PostgreSQL_DB), echo=False)
 
     def reload(self):
             """reloads data from the database"""
