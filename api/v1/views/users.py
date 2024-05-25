@@ -107,6 +107,15 @@ def loggin_user():
     return make_response(jsonify(user.to_dict()), 200)
 
 
+@app_views.route("/signout/user_id", methods=["GET"], strict_slashes=False)
+def loggout_user(user_id):
+    user = storage.get(User, user_id)
+    if not user:
+        abort(404)
+    user.is_loggin = False
+    storage.save()
+
+    return make_response(jsonify({"msg": "logged out successfully"}), 200)
 
 @app_views.route("/users/<user_id>", methods=["PATCH"], strict_slashes=False)
 def update_user(user_id):
