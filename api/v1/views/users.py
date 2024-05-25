@@ -107,8 +107,9 @@ def loggin_user():
     return make_response(jsonify(user.to_dict()), 200)
 
 
-@app_views.route("/signout/user_id", methods=["GET"], strict_slashes=False)
+@app_views.route("/signout/<user_id>", methods=["GET"], strict_slashes=False)
 def loggout_user(user_id):
+    "log the user out "
     user = storage.get(User, user_id)
     if not user:
         abort(404)
