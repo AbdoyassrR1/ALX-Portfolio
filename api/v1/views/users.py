@@ -59,6 +59,14 @@ def create_user():
     if storage.get(User, {"username": data["username"]}):
         abort(400, description="username already registered")
 
+    # handel empty values 
+    if len(data["username"]) < 4:
+        abort(400, description= "username must be at least 4 chars")
+    if len(data["email"]) < 15:
+        abort(400, description= "email must be at least 15, chars")
+    if len(data["password"]) < 8:
+        abort(400, description= "password must be at least 8, chars")
+
     # encrypt the password
     salt = gensalt()
     password = data["password"]
