@@ -159,7 +159,7 @@ def update_user(user_id):
                     setattr(user, key, value)
             # handle empty password and encrypt the password
             if key == "password":
-                if len(key) < 8:
+                if len(data[key]) < 8:
                     abort(400, description= "password must be at least 8 chars")
                 salt = gensalt()
                 password = data[key]
