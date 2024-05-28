@@ -145,7 +145,7 @@ def update_user(user_id):
             if key == "username":
                 if len(key) < 4:
                     abort(400, description= "username must be at least 4 chars")
-                elif storage.get(User, data[key]):
+                elif storage.get(User, {"username": data[key]}):
                     abort(400, description="username already registered")
                 else:
                     setattr(user, key, value)
@@ -153,7 +153,7 @@ def update_user(user_id):
             if key == "email":
                 if len(key) < 15:
                     abort(400, description= "email must be at least 15 chars")
-                elif storage.get(User, data[key]):
+                elif storage.get(User, {"email": data[key]}):
                     abort(400, description="email already registered")
                 else:
                     setattr(user, key, value)
