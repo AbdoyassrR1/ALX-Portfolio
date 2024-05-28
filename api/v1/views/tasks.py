@@ -112,3 +112,43 @@ def update_task(task_id):
             abort(400, "Invalid Key")
     storage.save()
     return make_response(jsonify(task.to_dict()), 200)
+
+
+@app_views.route("/users/<user_id>/tasks/<task_id>", methods=["PATCH"], strict_slashes=False)
+def update_task_for_user(user_id,task_id):
+    """ update task by its id for certain user """
+    user = storage.get(User, user_id)
+    task = storage.get(Task, task_id)
+
+    if not user:
+        abort(404)
+    if not task:
+        abort(404)
+    if task.creator_id != user.id:
+        abort(404)
+    
+    if not request.get_json():
+        abort(400, "not a json")
+    
+    data = request.get_json()
+    ignor = ["id", "creator_id", "created_at", "updated_at"]
+    allowed_fields = ['title', 'description', 'status', "category", "priority"]
+
+    for key , value in data.items():
+        if key in allowed_fields:
+            try:
+                if key == "status":
+                    value = TaskStatus[value.upper()]
+                if key == "category":
+                    value = TaskCategory[value.upper()]
+                if key == "priority":
+                    value = TaskPriority[value.upper()]
+            except KeyError:
+                abort(400, f"Invalid enum value for{KeyError.args[0]}")
+            setattr(task, key, value)
+        elif key in ignor:
+            abort(400, "Key Not allowed")
+        else:
+            abort(400, "Invalid Key")
+    storage.save()
+    return make_response(jsonify(task.to_dict()), 200)
