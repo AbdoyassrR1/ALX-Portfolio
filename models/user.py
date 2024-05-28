@@ -25,7 +25,7 @@ class User(BaseModel, Base):
         super().__init__(*args, **kwargs)
 
     def __repr__(self):
-        return f"{self.__class__.__name__}, username: {self.username}, id: {self.id}, email: {self.email}"
+        return f"Class: {self.__class__.__name__}, username: {self.username}, id: {self.id}"
 
     def to_dict(self):
         time = "%a, %d %b %Y %I:%M:%S %p"
@@ -45,6 +45,6 @@ class User(BaseModel, Base):
         tasks_list = []
         all_tasks = models.storage.all(Task)
         for task in all_tasks.values():
-            if task.state_id == self.id:
+            if task.creator_id == self.id:
                 tasks_list.append(task)
         return tasks_list
