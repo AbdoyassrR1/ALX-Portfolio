@@ -143,7 +143,7 @@ def update_user(user_id):
         if key in allowed_fields:
             # handle empty username or unique username
             if key == "username":
-                if len(key) < 4:
+                if len(data[key]) < 4:
                     abort(400, description= "username must be at least 4 chars")
                 elif storage.get(User, {"username": data[key]}):
                     abort(400, description="username already registered")
@@ -151,7 +151,7 @@ def update_user(user_id):
                     setattr(user, key, value)
             # handle empty email or unique email
             if key == "email":
-                if len(key) < 15:
+                if len(data[key]) < 15:
                     abort(400, description= "email must be at least 15 chars")
                 elif storage.get(User, {"email": data[key]}):
                     abort(400, description="email already registered")
