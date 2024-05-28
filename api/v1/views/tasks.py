@@ -6,7 +6,6 @@ from models.task import Task, TaskCategory, TaskPriority, TaskStatus
 from api.v1.views import app_views
 from flask import jsonify, abort, request, make_response
 
-# users/user_id/tasks
 
 @app_views.route("/tasks", methods=["GET"], strict_slashes=False)
 def get_all_tasks():
@@ -26,6 +25,19 @@ def get_task(task_id):
         abort(404)
 
     return jsonify(task.to_dict())
+
+
+@app_views.route("/users/<user_id>/tasks", methods=["GET"], strict_slashes=False)
+def get_tasks_for_user(user_id):
+    """ get all tasks for certain user by its id """
+    user = storage.get(User, user_id)
+    if not user:
+        abort(404)
+    user_tasks = user.created_tasks
+    tasks_list = []
+    for task in user_tasks:
+        tasks_list.append(task.to_dict())
+    return jsonify(tasks_list)
 
 
 @app_views.route("/tasks/<task_id>", methods=["DELETE"], strict_slashes=False)
