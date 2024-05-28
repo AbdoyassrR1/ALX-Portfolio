@@ -141,7 +141,32 @@ def update_user(user_id):
 
     for key , value in data.items():
         if key in allowed_fields:
-            setattr(user, key, value)
+            # handle empty username or unique username
+            if key == "username":
+                if len(key) < 4:
+                    abort(400, description= "username must be at least 4 chars")
+                elif storage.get(User, data[key]):
+                    abort(400, description="username already registered")
+                else:
+                    setattr(user, key, value)
+            # handle empty email or unique email
+            if key == "email":
+                if len(key) < 15:
+                    abort(400, description= "email must be at least 15 chars")
+                elif storage.get(User, data[key]):
+                    abort(400, description="email already registered")
+                else:
+                    setattr(user, key, value)
+            # handle empty password and encrypt the password
+            if key == "password":
+                if len(key) < 8:
+                    abort(400, description= "password must be at least 8 chars")
+                salt = gensalt()
+                password = data[key]
+                hashed_password = hashpw(password.encode("utf-8"), salt)
+                value = hashed_password
+                setattr(user, key, value)
+
         elif key in ignor:
             abort(400, "Key Not allowed")
         else:
