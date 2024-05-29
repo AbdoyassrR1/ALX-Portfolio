@@ -11,6 +11,33 @@ from flask import jsonify, abort, request, make_response
 def get_all_tasks():
     """get all tasks in the database"""
     all_tasks = storage.all(Task).values()
+
+    # handle query parameters
+    status = request.args.get("status")
+    category = request.args.get("category")
+    priority = request.args.get("priority")
+
+    if status:
+        try:
+            status = TaskStatus[status.upper()]
+        except KeyError:
+            abort(400, description="invalid status")
+        all_tasks = [task for task in all_tasks if task.status == status]
+
+    if category:
+        try:
+            category = TaskCategory[category.upper()]
+        except KeyError:
+            abort(400, description="invalid category")
+        all_tasks = [task for task in all_tasks if task.category == category]
+
+    if priority:
+        try:
+            priority = TaskPriority[priority.upper()]
+        except KeyError:
+            abort(400, description="invalid priority")
+        all_tasks = [task for task in all_tasks if task.priority == priority]
+
     tasks_list = []
     for task in all_tasks:
         tasks_list.append(task.to_dict())
@@ -34,9 +61,38 @@ def get_tasks_for_user(user_id):
     if not user:
         abort(404)
     user_tasks = user.created_tasks
+
+
+    # handle query parameters
+    status = request.args.get("status")
+    category = request.args.get("category")
+    priority = request.args.get("priority")
+
+    if status:
+        try:
+            status = TaskStatus[status.upper()]
+        except KeyError:
+            abort(400, description="invalid status")
+        user_tasks = [task for task in user_tasks if task.status == status]
+
+    if category:
+        try:
+            category = TaskCategory[category.upper()]
+        except KeyError:
+            abort(400, description="invalid category")
+        user_tasks = [task for task in user_tasks if task.category == category]
+
+    if priority:
+        try:
+            priority = TaskPriority[priority.upper()]
+        except KeyError:
+            abort(400, description="invalid priority")
+        user_tasks = [task for task in user_tasks if task.priority == priority]
+
     tasks_list = []
     for task in user_tasks:
         tasks_list.append(task.to_dict())
+
     return jsonify(tasks_list)
 
 
