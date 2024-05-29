@@ -59,6 +59,14 @@ def create_user():
     if storage.get(User, {"username": data["username"]}):
         abort(400, description="username already registered")
 
+    # handel empty values 
+    if len(data["username"]) < 4:
+        abort(400, description= "username must be at least 4 chars")
+    if len(data["email"]) < 15:
+        abort(400, description= "email must be at least 15, chars")
+    if len(data["password"]) < 8:
+        abort(400, description= "password must be at least 8, chars")
+
     # encrypt the password
     salt = gensalt()
     password = data["password"]
@@ -107,6 +115,16 @@ def loggin_user():
     return make_response(jsonify(user.to_dict()), 200)
 
 
+@app_views.route("/signout/<user_id>", methods=["GET"], strict_slashes=False)
+def loggout_user(user_id):
+    "log the user out "
+    user = storage.get(User, user_id)
+    if not user:
+        abort(404)
+    user.is_loggin = False
+    storage.save()
+
+    return make_response(jsonify({"msg": "logged out successfully"}), 200)
 
 @app_views.route("/users/<user_id>", methods=["PATCH"], strict_slashes=False)
 def update_user(user_id):
@@ -123,7 +141,32 @@ def update_user(user_id):
 
     for key , value in data.items():
         if key in allowed_fields:
-            setattr(user, key, value)
+            # handle empty username or unique username
+            if key == "username":
+                if len(data[key]) < 4:
+                    abort(400, description= "username must be at least 4 chars")
+                elif storage.get(User, {"username": data[key]}):
+                    abort(400, description="username already registered")
+                else:
+                    setattr(user, key, value)
+            # handle empty email or unique email
+            if key == "email":
+                if len(data[key]) < 15:
+                    abort(400, description= "email must be at least 15 chars")
+                elif storage.get(User, {"email": data[key]}):
+                    abort(400, description="email already registered")
+                else:
+                    setattr(user, key, value)
+            # handle empty password and encrypt the password
+            if key == "password":
+                if len(data[key]) < 8:
+                    abort(400, description= "password must be at least 8 chars")
+                salt = gensalt()
+                password = data[key]
+                hashed_password = hashpw(password.encode("utf-8"), salt)
+                value = hashed_password
+                setattr(user, key, value)
+
         elif key in ignor:
             abort(400, "Key Not allowed")
         else:

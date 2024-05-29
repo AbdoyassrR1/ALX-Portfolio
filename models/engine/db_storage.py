@@ -9,6 +9,7 @@ from models.base_model import Base
 from models.user import User
 from models.task import Task
 import models
+from os import getenv
 
 classes = {
     "User": User,
@@ -23,11 +24,16 @@ class PostgresqlDB():
     
     def __init__(self):
         """Instantiate a DBStorage object"""
-        db_username = "root"
-        db_password = "RootPass!12"
-        db_host = "localhost"
-        db_name = "ALX_Portfolio_DB"
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(db_username, db_password, db_host, db_name), echo=False)
+        PostgreSQL_USER = getenv('PostgreSQL_USER')
+        PostgreSQL_PWD = getenv('PostgreSQL_PWD')
+        PostgreSQL_HOST = getenv('PostgreSQL_HOST')
+        PostgreSQL_DB = getenv('PostgreSQL_DB')
+        PostgreSQL_DB_URL = getenv('PostgreSQL_DB_URL')
+        self.__engine = create_engine('postgresql+psycopg2://{}:{}@{}/{}'.format(PostgreSQL_USER,
+                                                                                PostgreSQL_PWD,
+                                                                                PostgreSQL_HOST,
+                                                                                PostgreSQL_DB),
+                                                                                echo=False)
 
     def reload(self):
             """reloads data from the database"""
@@ -43,9 +49,20 @@ class PostgresqlDB():
             if cls is None or cls is classes[clss] or cls is clss:
                 objs = self.__session.query(classes[clss]).all()
                 for obj in objs:
-                    key = obj.__class__.__name__ + '.' + obj.id
+                    key = obj.id
                     new_dict[key] = obj
-        return (new_dict)
+        return new_dict
+
+    # def all(self, cls=None):
+    #     """query on the current database session"""
+    #     new_dict = {}
+    #     for clss in classes:
+    #         if cls is None or cls is classes[clss] or cls is clss:
+    #             objs = self.__session.query(classes[clss]).all()
+    #             for obj in objs:
+    #                 key = obj.__class__.__name__ + '.' + obj.id
+    #                 new_dict[key] = obj
+    #     return (new_dict)
 
     def new(self, obj):
         """add the object to the current database session"""

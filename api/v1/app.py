@@ -7,7 +7,7 @@ from flask_cors import CORS
 
 app = Flask(__name__) 
 app.register_blueprint(app_views)
-# cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 @app.teardown_appcontext
@@ -29,4 +29,4 @@ def internal_error(error):
     return make_response(jsonify({'error': 'Internal server error'}), 500)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)

@@ -6,12 +6,38 @@ from models.task import Task, TaskCategory, TaskPriority, TaskStatus
 from api.v1.views import app_views
 from flask import jsonify, abort, request, make_response
 
-# users/user_id/tasks
 
 @app_views.route("/tasks", methods=["GET"], strict_slashes=False)
 def get_all_tasks():
     """get all tasks in the database"""
     all_tasks = storage.all(Task).values()
+
+    # handle query parameters
+    status = request.args.get("status")
+    category = request.args.get("category")
+    priority = request.args.get("priority")
+
+    if status:
+        try:
+            status = TaskStatus[status.upper()]
+        except KeyError:
+            abort(400, description="invalid status")
+        all_tasks = [task for task in all_tasks if task.status == status]
+
+    if category:
+        try:
+            category = TaskCategory[category.upper()]
+        except KeyError:
+            abort(400, description="invalid category")
+        all_tasks = [task for task in all_tasks if task.category == category]
+
+    if priority:
+        try:
+            priority = TaskPriority[priority.upper()]
+        except KeyError:
+            abort(400, description="invalid priority")
+        all_tasks = [task for task in all_tasks if task.priority == priority]
+
     tasks_list = []
     for task in all_tasks:
         tasks_list.append(task.to_dict())
@@ -26,6 +52,48 @@ def get_task(task_id):
         abort(404)
 
     return jsonify(task.to_dict())
+
+
+@app_views.route("/users/<user_id>/tasks", methods=["GET"], strict_slashes=False)
+def get_tasks_for_user(user_id):
+    """ get all tasks for certain user by its id """
+    user = storage.get(User, user_id)
+    if not user:
+        abort(404)
+    user_tasks = user.created_tasks
+
+
+    # handle query parameters
+    status = request.args.get("status")
+    category = request.args.get("category")
+    priority = request.args.get("priority")
+
+    if status:
+        try:
+            status = TaskStatus[status.upper()]
+        except KeyError:
+            abort(400, description="invalid status")
+        user_tasks = [task for task in user_tasks if task.status == status]
+
+    if category:
+        try:
+            category = TaskCategory[category.upper()]
+        except KeyError:
+            abort(400, description="invalid category")
+        user_tasks = [task for task in user_tasks if task.category == category]
+
+    if priority:
+        try:
+            priority = TaskPriority[priority.upper()]
+        except KeyError:
+            abort(400, description="invalid priority")
+        user_tasks = [task for task in user_tasks if task.priority == priority]
+
+    tasks_list = []
+    for task in user_tasks:
+        tasks_list.append(task.to_dict())
+
+    return jsonify(tasks_list)
 
 
 @app_views.route("/tasks/<task_id>", methods=["DELETE"], strict_slashes=False)
@@ -75,6 +143,46 @@ def update_task(task_id):
     task = storage.get(Task, task_id)
     if not task:
         abort(404)
+    if not request.get_json():
+        abort(400, "not a json")
+    
+    data = request.get_json()
+    ignor = ["id", "creator_id", "created_at", "updated_at"]
+    allowed_fields = ['title', 'description', 'status', "category", "priority"]
+
+    for key , value in data.items():
+        if key in allowed_fields:
+            try:
+                if key == "status":
+                    value = TaskStatus[value.upper()]
+                if key == "category":
+                    value = TaskCategory[value.upper()]
+                if key == "priority":
+                    value = TaskPriority[value.upper()]
+            except KeyError:
+                abort(400, f"Invalid enum value for{KeyError.args[0]}")
+            setattr(task, key, value)
+        elif key in ignor:
+            abort(400, "Key Not allowed")
+        else:
+            abort(400, "Invalid Key")
+    storage.save()
+    return make_response(jsonify(task.to_dict()), 200)
+
+
+@app_views.route("/users/<user_id>/tasks/<task_id>", methods=["PATCH"], strict_slashes=False)
+def update_task_for_user(user_id,task_id):
+    """ update task by its id for certain user """
+    user = storage.get(User, user_id)
+    task = storage.get(Task, task_id)
+
+    if not user:
+        abort(404)
+    if not task:
+        abort(404)
+    if task.creator_id != user.id:
+        abort(404)
+    
     if not request.get_json():
         abort(400, "not a json")
     
