@@ -17,8 +17,8 @@ class User(BaseModel, Base):
     password = Column(LargeBinary, nullable=False)
     is_loggin= Column(Boolean, nullable=False, default=False)
 
-    # tasks_created = relationship('Task', back_populates='creator',cascade="all, delete, save-update")
-    tasks_created = relationship('Task', back_populates='creator')
+    tasks_created = relationship('Task', back_populates='creator',cascade="all, delete, save-update")
+    # tasks_created = relationship('Task', back_populates='creator')
 
     def __init__(self, *args, **kwargs):
         """initializes Place"""
