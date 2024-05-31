@@ -16,6 +16,10 @@ def get_all_tasks():
     status = request.args.get("status")
     category = request.args.get("category")
     priority = request.args.get("priority")
+    search = request.args.get("search")
+
+    if search:
+        all_tasks = [task for task in all_tasks if task.title == search]
 
     if status:
         try:
@@ -67,6 +71,10 @@ def get_tasks_for_user(user_id):
     status = request.args.get("status")
     category = request.args.get("category")
     priority = request.args.get("priority")
+    search = request.args.get("search")
+
+    if search:
+        all_tasks = [task for task in all_tasks if task.title == search]
 
     if status:
         try:
