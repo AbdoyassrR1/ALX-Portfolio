@@ -74,7 +74,7 @@ def get_tasks_for_user(user_id):
     search = request.args.get("search")
 
     if search:
-        all_tasks = [task for task in all_tasks if task.title == search]
+        user_tasks = [task for task in user_tasks if task.title == search]
 
     if status:
         try:
