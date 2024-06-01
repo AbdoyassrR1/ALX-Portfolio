@@ -1,0 +1,173 @@
+.container-sign {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+.container-sign h3 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.container-sign h3 a:hover {
+  cursor: pointer;
+  color: #7d7d7d;
+}
+
+.container-sign form {
+  width: 400px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container-sign form h4 {
+  font-size: 15px;
+  padding: 10px;
+  background-color: #594f8d;
+  display: flex;
+  justify-content: center;
+  color: white;
+  border-radius: 10px 10px 0 0;
+}
+
+.container-sign form .inputs-container {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-sign form .inputs-container label {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.container-sign form .inputs-container input {
+  padding: 10px;
+  border: 1px solid #d8dde5;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.container-sign form .inputs-container input:focus {
+  outline: none;
+}
+
+.container-sign form .check-terms {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.container-sign form .keep-logged-forgot-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.container-sign form .keep-logged {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container-sign form .keep-logged .remember-me {
+  margin-bottom: 0;
+  margin-right: 5px;
+}
+
+.container-sign form .check-terms .check-agree {
+  margin-right: 5px;
+  margin-bottom: 0;
+}
+
+.container-sign form .check-terms span {
+  font-size: 14px;
+}
+
+.container-sign form .btn-sign {
+  width: fit-content;
+  padding: 8px 15px;
+  background-color: #5dcff3;
+  color: white;
+  border: 1px solid #5dcff3;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.container-sign form .btn-sign:hover {
+  background-color: #37c4f0;
+  border: 1px solid #24beef;
+}
+
+.container-sign form .btn-sign:disabled {
+  background-color: #37c4f0;
+  border: 1px solid #24beef;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.container-sign form .btn-sign i {
+  display: none;
+}
+
+.container-sign form .hr-sign {
+  width: 100%;
+  height: 1px;
+  margin: 15px 0;
+  background-color: #eaedef;
+}
+
+.container-sign form .already-account {
+  text-align: center;
+  font-size: 14px;
+  color: #979797;
+}
+
+.container-sign form .sign-in-link {
+  border: 1px solid #dae0ed;
+  padding: 8px;
+  border-radius: 6px;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #717171;
+}
+
+.container-sign form .facebook-btn {
+  padding: 10px 0;
+  background-color: #335397;
+  color: white;
+  font-size: 18px;
+  border: 1px solid #335397;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.container-sign form .facebook-btn i {
+  color: white;
+  position: absolute;
+  left: 10px;
+  font-size: 20px;
+}
+
+.container-sign form .google-btn {
+  padding: 10px 0;
+  font-size: 18px;
+  background-color: white;
+  border: 1px solid #dae0ed;
+  border-radius: 5px;
+  position: relative;
+}
+
+.container-sign form .google-btn i {
+  color: #db4437;
+  position: absolute;
+  left: 10px;
+  font-size: 20px;
+}

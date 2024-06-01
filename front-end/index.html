@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- link css main style sheet -->
+    <link rel="stylesheet" href="./css/main.css" />
+    <!-- link font Noto Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- link animate css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <!-- link bootstrap icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- Header component -->
+    <script src="./components/Header.js" defer></script>
+    <!-- footer component -->
+    <script src="./components/Footer.js" defer></script>
+    <!-- link axios for api -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- link js file -->
+    <script type="module" src="./functions/handle-sign.js"></script>
+    <script type="module" src="./js/sign-out.js"></script>
+    <script type="module" src="./js/landing.js"></script>
+    <title>Task Management</title>
+  </head>
+  <body>
+    <header-component></header-component>
+    <main>
+      <div class="container">
+        <div class="row" id="main">
+          <div class="col-6 animate__animated animate__backInLeft">
+            <h1 class="text-center animate__animated animate__fadeIn">
+              Welcome to Task Management
+            </h1>
+            <p class="text-center animate__animated animate__fadeIn">
+              This is a simple task management web app.
+              <br />Start creating your tasks.
+            </p>
+            <a href="./tasks.html" class="get-start" id="get-start">
+              Get Started
+            </a>
+          </div>
+          <div class="col-6 animate__animated animate__backInRight">
+            <img src="./assets/landing-image.webp" alt="landing-image" />
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer-component></footer-component>
+  </body>
+</html>

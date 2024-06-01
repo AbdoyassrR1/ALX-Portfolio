@@ -1,0 +1,119 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 20px 50px;
+  align-items: center;
+  box-shadow: 0px 1px 20px -10px black;
+}
+
+header .logo a {
+  color: #4d869c;
+  cursor: pointer;
+  transition: 0.3s linear all;
+}
+
+header .logo a:hover {
+  color: #7ab2b2;
+}
+
+header nav ul.nav {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+header nav ul.nav li a.sign-up {
+  background-color: #4d869c;
+  border: 2px solid #7ab2b2;
+  color: white;
+  padding: 7px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s linear all;
+}
+
+header nav ul.nav li a.sign-up:hover {
+  border: 2px solid #7ab2b2;
+  background-color: white;
+  border-radius: 5px;
+  color: #4d869c;
+}
+
+header nav ul.nav li a.sign-in {
+  border: 2px solid #7ab2b2;
+  padding: 7px 20px;
+  border-radius: 5px;
+  color: #4d869c;
+  cursor: pointer;
+  transition: 0.3s linear all;
+}
+
+header nav ul.nav li a.sign-in:hover {
+  background-color: #4d869c;
+  color: white;
+  border-radius: 5px;
+}
+
+header .user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+header .user .btn-sign-out {
+  padding: 8px 20px;
+  background-color: white;
+  border: 2px solid #ff204e;
+  border-radius: 5px;
+  color: #ff204e;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s linear all;
+}
+
+header .user .btn-sign-out:hover {
+  background-color: #ff204e;
+  color: white;
+}
+
+header .user .btn-sign-out:disabled {
+  opacity: 0.5;
+  background-color: #ff204e;
+  color: white;
+  cursor: not-allowed;
+}
+
+header .user .btn-sign-out i {
+  display: none;
+}
+
+header .user .profile {
+  padding: 6px 20px;
+  border: 2px solid #4d869c;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #4d869c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: 0.3s linear all;
+}
+
+header .user .profile-icon {
+  color: #4d869c;
+  font-size: 16px;
+  transition: 0.3s linear all;
+}
+
+header .user .profile:hover {
+  background-color: #4d869c;
+  color: white;
+}
+
+header .user .profile:hover .profile-icon {
+  color: white;
+}

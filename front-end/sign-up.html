@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- link css main style sheet -->
+    <link rel="stylesheet" href="./css/main.css" />
+    <!-- link font Noto Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- link animate css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <!-- link bootstrap icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- link axios for api -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- link alertify js -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+    <!-- link js file -->
+    <script src="./functions/handle-sign.js" type="module"></script>
+    <script src="./js/sign-up.js" type="module"></script>
+    <title>Sign up</title>
+  </head>
+  <body>
+    <div class="container-sign" id="container-sign-up">
+      <h3><a href="/">ToDo</a></h3>
+      <form class="animate__animated animate__backInDown">
+        <h4>Sign up</h4>
+        <div class="inputs-container" id="inputs-container">
+          <label for="username">UserName</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Enter your username"
+            class="animate__animated"
+          />
+          <label for="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter your email"
+            class="animate__animated"
+          />
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter your password"
+            class="animate__animated"
+          />
+          <div class="check-terms">
+            <input
+              type="checkbox"
+              name="Agree"
+              id="check-agree"
+              class="check-agree"
+            />
+            <span>Agree the terms and policy</span>
+          </div>
+          <button type="button" class="btn-sign" id="btn-sign">
+            <i class="bi bi-arrow-clockwise" id="reload-icon"></i>
+            Sign up
+          </button>
+          <div class="hr-sign"></div>
+          <p class="already-account">Already have an account?</p>
+          <a href="./sign-in.html" class="sign-in-link">Sign in</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
