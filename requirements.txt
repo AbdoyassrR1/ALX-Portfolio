@@ -1,6 +1,0 @@
-flask
-flask_cors
-sqlalchemy
-mysqlclient
-psycopg2-binary
-bcrypt
