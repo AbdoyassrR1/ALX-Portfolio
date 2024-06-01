@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+    background-color: #f4f4f4;
+}
+.header {
+    background-color: #4D869C;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+.header nav a {
+    color: white;
+    margin: 0 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+.intro {
+    background: url('cover-image.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding-top: 50px; /* To compensate for fixed header */
+}
+.intro h1 {
+    font-size: 3rem;
+    margin: 0;
+    color: #4D869C;
+}
+.intro p {
+    font-size: 1.5rem;
+    color: #7AB2B2;
+}
+.intro button {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background-color: #4D869C;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.section {
+    padding: 2rem;
+    text-align: center;
+}
+.feature {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+.feature img {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+}
+.feature div {
+    max-width: 200px;
+    text-align: left;
+}
+.about .team-member {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+.about .team-member div {
+    max-width: 200px;
+    text-align: left;
+}
+.footer {
+    background-color: #4D869C;
+    padding: 1rem;
+    text-align: center;
+    color: white;
+    margin-top: 2rem;
+}
