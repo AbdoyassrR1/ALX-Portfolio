@@ -24,7 +24,7 @@ body {
     cursor: pointer;
 }
 .intro {
-    background: url('cover-image.jpg') no-repeat center center/cover;
+    background: url('https://startinfinity.s3.us-east-2.amazonaws.com/production/blog/post/5/main/1SvzKctRCi8bwB0QPdOZkBP0pRhsOqZpl0wjs6y0.png') no-repeat center center/cover;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -41,12 +41,12 @@ body {
 }
 .intro p {
     font-size: 1.5rem;
-    color: #7AB2B2;
+    color: #4D869C;
 }
 .intro button {
     margin-top: 2rem;
     padding: 1rem 2rem;
-    background-color: #4D869C;
+    background-color: #2d5c72;
     border: none;
     color: white;
     font-size: 1rem;
@@ -62,15 +62,27 @@ body {
     justify-content: space-around;
     margin-bottom: 2rem;
 }
-.feature img {
-    width: 250;
+/* .feature img {
+    width: auto;
     height: 250px;
     border-radius: 8px;
-}
+} */
 .feature div {
     max-width: 200px;
     text-align: left;
 }
+.feature .coming-soon div {
+    max-width: 200px;
+    text-align: right;
+    
+}
+.coming-soon {
+    opacity: 0.6;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+}
+
 .about .team-member {
     display: flex;
     justify-content: space-around;
