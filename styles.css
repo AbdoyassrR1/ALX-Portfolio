@@ -3,8 +3,8 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    scroll-behavior: smooth; /* Enable smooth scrolling */
-    background-color: #f4f4f4;
+    scroll-behavior: smooth;
+    background-color: #dfedfa;
 }
 .header {
     background-color: #4D869C;
@@ -24,7 +24,7 @@ body {
     cursor: pointer;
 }
 .intro {
-    background: url('https://startinfinity.s3.us-east-2.amazonaws.com/production/blog/post/5/main/1SvzKctRCi8bwB0QPdOZkBP0pRhsOqZpl0wjs6y0.png') no-repeat center center/cover;
+    background: url('./images/cover\ image.jpg') no-repeat center center/cover;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -32,16 +32,16 @@ body {
     align-items: center;
     color: white;
     text-align: center;
-    padding-top: 50px; /* To compensate for fixed header */
+    padding-top: 50px;
 }
 .intro h1 {
     font-size: 3rem;
     margin: 0;
-    color: #4D869C;
+    color: #335867;
 }
 .intro p {
     font-size: 1.5rem;
-    color: #4D869C;
+    color: #2a4e5c;
 }
 .intro button {
     margin-top: 2rem;
