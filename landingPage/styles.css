@@ -63,8 +63,8 @@ body {
     margin-bottom: 2rem;
 }
 .feature img {
-    width: 200px;
-    height: auto;
+    width: 250;
+    height: 250px;
     border-radius: 8px;
 }
 .feature div {
